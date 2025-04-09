@@ -1,4 +1,5 @@
 Chlamydomonas UL1690 Genome Analysis Pipeline
+
 🧬 Genome Assembly
 	•	Laboratory strains UL-1690 (a derivative of CC-1690/21gr) and CC-400 (cw15) were selected for PacBio HiFi sequencing.
 	•	Genome assemblies were generated using HiFiasm.
