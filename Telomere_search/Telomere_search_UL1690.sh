@@ -33,6 +33,7 @@ awk '{print$1}' cc1690_telo_1000bp.bed | sort | uniq > cc1690_telo_reads_name.tx
 bioawk -cfastx 'BEGIN{while((getline k <"cc1690_telo_reads_name.txt")>0)i[k]=1}{if(i[$name])print ">"$name"\n"$seq}' cc1690_HiFi.fa > cc1690_telo_reads.fa
 bioawk -c fastx '{print $name,length($seq)}' cc1690_telo_reads.fa > cc1690_telo_reads_length.txt
 
+# telo_reads_final_HiFi.txt was generated using code in telo_cc1690.R
 # Trim reads and then blast
 bedtools getfasta -fi cc1690_telo_reads.fa -bed telo_reads_final_HiFi.txt -fo telo_reads_filtered_trimmed.fa
 ml BLAST+/2.13.0-gompi-2022a
