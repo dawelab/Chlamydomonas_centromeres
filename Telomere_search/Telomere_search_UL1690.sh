@@ -27,7 +27,6 @@ awk '$3>=96 && $4>=27' cc1690_reads_telo_blast.txt | awk '{if($9>$10) {print $2"
 ml BEDTools/2.31.0-GCC-12.3.0
 bedtools merge -d 1000 -i cc1690_telo_blast.bed > cc1690_telo_1000bp.bed
 awk '{print$1"\t"$2"\t"$3"\t"$3-$2}' cc1690_telo_1000bp.bed > cc1690_telo_1000bp.bed.sub
-#bioawk -c fastx '{print $name,length($seq)}' cc1690_HiFi.fa > cc1690_HiFi_reads.length.txt
 
 #Extract reads with telomere
 awk '{print$1}' cc1690_telo_1000bp.bed | sort | uniq > cc1690_telo_reads_name.txt
