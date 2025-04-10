@@ -9,6 +9,9 @@
 #SBATCH --mail-user=mw36149@uga.edu                    # Where to send mail - # replace cbergman with your myid
 #SBATCH --mail-type=END,FAIL                            # Mail events (BEGIN, END, FAIL, ALL)
 
+
+### Part I: Identity reads with telomere sequences ###
+
 #set input and output directory variables
 DATADIR="/scratch/mw36149/telo_chlamy"
 cd $DATADIR
@@ -32,6 +35,9 @@ awk '{print$1"\t"$2"\t"$3"\t"$3-$2}' cc1690_telo_1000bp.bed > cc1690_telo_1000bp
 awk '{print$1}' cc1690_telo_1000bp.bed | sort | uniq > cc1690_telo_reads_name.txt
 bioawk -cfastx 'BEGIN{while((getline k <"cc1690_telo_reads_name.txt")>0)i[k]=1}{if(i[$name])print ">"$name"\n"$seq}' cc1690_HiFi.fa > cc1690_telo_reads.fa
 bioawk -c fastx '{print $name,length($seq)}' cc1690_telo_reads.fa > cc1690_telo_reads_length.txt
+
+
+### Part II: Process telo-reads and remap the trimmed telo-reads to the genome ###
 
 # telo_reads_final_HiFi.txt was generated using code in telo_cc1690.R
 # Trim reads and then blast
