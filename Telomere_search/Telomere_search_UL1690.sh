@@ -34,7 +34,7 @@ bioawk -cfastx 'BEGIN{while((getline k <"cc1690_telo_reads_name.txt")>0)i[k]=1}{
 bioawk -c fastx '{print $name,length($seq)}' cc1690_telo_reads.fa > cc1690_telo_reads_length.txt
 
 # Trim reads and then blast
-bedtools getfasta -fi cc1690_telo_reads2.fa -bed telo_reads_final_HiFi.txt -fo telo_reads_filtered_trimmed.fa
+bedtools getfasta -fi cc1690_telo_reads.fa -bed telo_reads_final_HiFi.txt -fo telo_reads_filtered_trimmed.fa
 ml BLAST+/2.13.0-gompi-2022a
 #makeblastdb -in cc1690_HiFi_chr.fa -input_type fasta -dbtype nucl -out cc1690_HiFi_chr_blastdb
 blastn -num_threads 20 -task blastn -evalue 1e-5 -query telo_reads_filtered_trimmed.fa -db cc1690_HiFi_chr_blastdb -out cc1690_telo_reads_filtered_trimmed.txt -outfmt 6
